@@ -1,0 +1,86 @@
+Teste de DEV
+
+Este teste tem como objetivo avaliar o conhecimento do candidato em NodeJS e MySQL, assim como organização e lógica.
+
+O teste consiste em:
+Fazer um script que receba variáveis (CONSOLE APPLICATION)
+Capturar os Dados da API abaixo através do script acima
+Guardar estes dados em um Banco de Dados
+Procurar dados salvos e imprimir em JSON
+
+API
+
+Endpoint: http://cep.bldstools.com/
+Método: GET
+Parâmetros:
+
+Nome
+Valor
+cep
+99999-999 OU 99999999
+
+
+Retonos:
+
+Em caso de CEP encontrado:
+
+{
+  "code": 200,
+  "message": "CEP found",
+  "result": {
+    "logradouro": "Rua Sergipe",
+    "bairro": "Consolação",
+    "localidade": "São Paulo",
+    "uf": "SP",
+    "cep": "01243001"
+  }
+}
+
+Em caso de cep não encontrado:
+
+{
+  "code": 404,
+  "message": "CEP not found",
+  "result": []
+}
+
+Em caso de CEP inválido:
+{
+  "code": 401,
+  "message": "Invalid CEP provided",
+  "result": {
+    "cep_provided": "",
+    "cep_found": ""
+  }
+}
+
+Banco de Dados
+
+Hostname: staging.cweudo5c98bn.sa-east-1.rds.amazonaws.com
+Schema: teste_py
+User: pyqa
+Pass: sUQu1gH7gl9#uBoKnB
+
+Tabela: 
+
+CREATE TABLE `dados_dep` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cep` int(11) DEFAULT NULL,
+  `nome` varchar(45) NOT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `bairro` varchar(255) DEFAULT NULL,
+  `estado` varchar(2) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `retorno_api` json DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+Entrega
+
+Será avaliado:
+Organização de código
+Simplicidade na solução
+Tratativas de erros
